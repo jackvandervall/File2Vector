@@ -83,7 +83,7 @@ if page == "Upload":
                     tables.append(df)
         return tables
 
-    # Extract from PDF
+    # Extract from DOCX
     def extract_text_from_docx(uploaded_file):
         """Extracts text from a Word document"""
         doc = docx.Document(uploaded_file)
