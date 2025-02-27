@@ -4,3 +4,9 @@ This Supabase Vector Uploader is an app that allows users to upload and store va
 1. Go to https://supabase.com/: Project Settings > Data API and paste your Project URL + service_role into the Upload tab.
 2. Upload the files you want to convert to embeddings.
 3. Provide feedback via the contact page.
+
+![file2vector Preview 1 - Upload PDF](https://github.com/user-attachments/assets/1edfcc7d-116c-41b7-b2c9-70633ff7aace)
+
+📧 **Email:** [jackvdv3@gmail.com](mailto:jackvdv3@gmail.com)
+💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/yourjackvandervall)
+📂 **GitHub:** [jackvandervall](https://github.com/jackvandervall)
