@@ -28,7 +28,7 @@ def load_custom_settings():
     
 # Streamlit Sidebar for API and Table Configuration
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Upload", "Contact"])
+page = st.sidebar.radio("Go to", ["Home", "Upload", "Supabase", "Contact"])
 
 if page == "Home":
     st.title("File2Vector")
@@ -67,10 +67,10 @@ if page == "Upload":
     embedding_model = st.radio("Choose Embedding Model:", ["Cohere", "OpenAI"])
 
     if embedding_model == "OpenAI":
-        OPENAI_API_KEY = st.sidebar.text_input("Cohere API Key", custom_settings.get("COHERE_API_KEY", "your-cohere-api-key"), type="password")
+        OPENAI_API_KEY = st.sidebar.text_input("Cohere API Key", custom_settings.get("OPENAI_API_KEY", "your-openai-api-key"), type="password")
         openai_client = openai.OpenAI(api_key=OPENAI_API_KEY)
     else:
-        COHERE_API_KEY = st.sidebar.text_input("OpenAI API Key", custom_settings.get("OPENAI_API_KEY", "your-openai-api-key"), type="password")
+        COHERE_API_KEY = st.sidebar.text_input("OpenAI API Key", custom_settings.get("COHERE_API_KEY", "your-cohere-api-key"), type="password")
         co = cohere.Client(COHERE_API_KEY)
 
     # Ensure Supabase API Key is provided
@@ -155,7 +155,7 @@ if page == "Upload":
                 "embedding": vector,
                 "metadata": metadata
             }).execute()
-            progress_bar.progress((i + 1) / len(text_chunks))  # Update progress
+            progress_bar.progress((i + 1) / len(text_chunks))
         st.success(f"✅ Uploaded {len(text_chunks)} chunks successfully!")
 
     uploaded_file = st.file_uploader("Choose a file", type=["csv", "pdf", "docx", "xlsx"])
@@ -200,7 +200,37 @@ if page == "Upload":
                     upload_to_supabase(str(row.to_dict()), row.to_dict())
                 st.success("Excel uploaded successfully!")
 
-# Contact Page with Button
+if page == "Supabase":
+    st.sidebar.write("***")
+    st.sidebar.write("**Credentials**")
+    
+    # Load custom settings if button is pressed
+    if st.sidebar.checkbox("Custom Settings"):
+        custom_settings = load_custom_settings()
+    else:
+        custom_settings = {}
+    
+    # User input for API credential
+    SUPABASE_URL = st.sidebar.text_input("Supabase URL", custom_settings.get("SUPABASE_URL", "https://your-supabase-url.supabase.co"))
+    SUPABASE_KEY = st.sidebar.text_input("Supabase Key", custom_settings.get("SUPABASE_KEY", "your-service-role-key"), type="password")
+    TABLE_NAME = st.sidebar.text_input("Table Name", custom_settings.get("TABLE_NAME", "your_vector_table"))
+  
+    st.title("Delete All Data from Supabase Vector Store")
+    st.write("This will permanently delete all rows from the vector store in Supabase.")
+    
+    if st.button("Delete All Data"):
+        if SUPABASE_KEY == "your-service-role-key" or not TABLE_NAME:
+            st.error("⚠️ Please provide valid Supabase credentials and table name!")
+        else:
+            try:
+                supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+                response = supabase.table(TABLE_NAME).delete().neq("id", 0).execute()
+                st.success("✅ All rows have been deleted successfully!")
+            except Exception as e:
+                st.error(f"❌ Failed to delete data: {e}")
+
+
+# Contact Page with a Button
 elif page == "Contact":
     st.title("📬 Contact Me")
     st.write("Feel free to reach out for collaborations, suggestions, or feedback!")
