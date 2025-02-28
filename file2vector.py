@@ -10,9 +10,22 @@ from nltk.tokenize import sent_tokenize
 from supabase import create_client
 import cohere
 import openai
+import json
 
 nltk.download('punkt')
 
+# Function to load custom settings from a file
+def load_custom_settings():
+    try:
+        with open("custom_settings.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        st.error("⚠️ Custom settings file not found.")
+        return {}
+    except json.JSONDecodeError:
+        st.error("⚠️ Error reading custom settings file.")
+        return {}
+    
 # Streamlit Sidebar for API and Table Configuration
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Home", "Upload", "Contact"])
@@ -34,21 +47,30 @@ if page == "Upload":
     st.write("**Embedding Model Settings**")
     st.sidebar.write("***")
     st.sidebar.write("**Credentials**")
+
+    # Load custom settings if button is pressed
+    if st.sidebar.checkbox("Custom Settings"):
+        custom_settings = load_custom_settings()
+    else:
+        custom_settings = {}    
     
-    # User input for API credentials
-    SUPABASE_URL = st.sidebar.text_input("Supabase URL", "https://your-supabase-url.supabase.co")
-    SUPABASE_KEY = st.sidebar.text_input("Supabase Key", "your-service-role-key", type="password")
-    TABLE_NAME = st.sidebar.text_input("Table Name", "your_vector_table")
-    EXPECTED_DIM = st.select_slider("Expected Dimensions", options=[384, 786, 1024, 4096])
+    # User input for API credential
+    SUPABASE_URL = st.sidebar.text_input("Supabase URL", custom_settings.get("SUPABASE_URL", "https://your-supabase-url.supabase.co"))
+    SUPABASE_KEY = st.sidebar.text_input("Supabase Key", custom_settings.get("SUPABASE_KEY", "your-service-role-key"), type="password")
+    TABLE_NAME = st.sidebar.text_input("Table Name", custom_settings.get("TABLE_NAME", "your_vector_table"))
+    
+    # Select slider with dynamic default value
+    default_expected_dim = custom_settings.get("EXPECTED_DIM", 1024)
+    EXPECTED_DIM = st.select_slider("Expected Dimensions", options=[384, 786, 1024, 4096], value=int(default_expected_dim))
     
     # Embedding Model Selection
     embedding_model = st.radio("Choose Embedding Model:", ["Cohere", "OpenAI"])
 
     if embedding_model == "OpenAI":
-        OPENAI_API_KEY = st.sidebar.text_input("OpenAI API Key", "your-openai-api-key", type="password")
+        OPENAI_API_KEY = st.sidebar.text_input("Cohere API Key", custom_settings.get("COHERE_API_KEY", "your-cohere-api-key"), type="password")
         openai_client = openai.OpenAI(api_key=OPENAI_API_KEY)
     else:
-        COHERE_API_KEY = st.sidebar.text_input("Cohere API Key", "your-cohere-api-key", type="password")
+        COHERE_API_KEY = st.sidebar.text_input("OpenAI API Key", custom_settings.get("OPENAI_API_KEY", "your-openai-api-key"), type="password")
         co = cohere.Client(COHERE_API_KEY)
 
     # Ensure Supabase API Key is provided
