@@ -6,7 +6,3 @@ File2Vector is a tool  that allows users to upload and store various file types 
 3. Provide feedback via the contact page.
 
 ![file2vector Preview 1 - Upload PDF](https://github.com/user-attachments/assets/1edfcc7d-116c-41b7-b2c9-70633ff7aace)
-
-📧 **Email:** [jackvdv3@gmail.com](mailto:jackvdv3@gmail.com)
-💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/yourjackvandervall)
-📂 **GitHub:** [jackvandervall](https://github.com/jackvandervall)
