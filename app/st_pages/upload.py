@@ -25,12 +25,18 @@ def show():
     value=int(custom_settings.get("CHUNK_SIZE", 300)),  # Default value
     step=50  # Adjust step size
     )
-
+    
+    # ✅ Initialize both variables with None before conditional assignment
+    OPENAI_API_KEY = None
+    COHERE_API_KEY = None
+    
     # ✅ Embedding Model Selection
     embedding_model = st.radio("Embedding Model", ["OpenAI", "Cohere"])
     
-    OPENAI_API_KEY = st.sidebar.text_input("OpenAI API Key", custom_settings.get("OPENAI_API_KEY", "your-openai-api-key"), type="password")
-    COHERE_API_KEY = st.sidebar.text_input("Cohere API Key", custom_settings.get("COHERE_API_KEY", "your-cohere-api-key"), type="password")
+    if embedding_model == "OpenAI":
+        OPENAI_API_KEY = st.sidebar.text_input("OpenAI API Key", custom_settings.get("OPENAI_API_KEY", "your-openai-api-key"), type="password")
+    else:
+        COHERE_API_KEY = st.sidebar.text_input("Cohere API Key", custom_settings.get("COHERE_API_KEY", "your-cohere-api-key"), type="password")
 
     # Ensure Supabase API Key is provided
     if SUPABASE_KEY == "your-service-role-key":

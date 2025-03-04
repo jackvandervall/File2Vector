@@ -11,7 +11,6 @@ rain(
     animation_length="infinite"
 )
 
-
 def show():
     # Introduction
     st.title("🥳 File2Vector - :violet[NEW RELEASE]")

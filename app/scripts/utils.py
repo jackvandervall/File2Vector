@@ -3,10 +3,11 @@ import json
 import pandas as pd
 import numpy as np
 import pdfplumber
-import pymupdf  # PyMuPDF for PDFs
+import pymupdf
 import docx
 import cohere
 import openai
+import time
 from nltk.tokenize import sent_tokenize
 import streamlit as st
 from supabase import create_client
@@ -28,11 +29,18 @@ def load_custom_settings():
 def create_supabase_client(url, key):
     return create_client(url, key)
 
-# ✅ Function to check for new files in a folder
-def check_new_files(folder_path, known_files):
-    current_files = set(os.listdir(folder_path))
+def check_new_files(base_dir, known_files):
+    # Ensure `current_files` is a set
+    current_files = set(os.listdir(base_dir))
+
+    # Ensure `known_files` is a set to avoid TypeError
+    known_files = set(known_files)
+
+    # Now the set subtraction works correctly
     new_files = current_files - known_files
-    return new_files, current_files
+
+    return list(new_files), known_files  # Return as a list for Streamlit compatibility
+
 
 # ✅ Function to split text into chunks
 def split_text(text, chunk_size=300):
@@ -120,8 +128,12 @@ def upload_to_supabase(supabase, table_name, content, metadata, expected_dim, mo
         return
 
     metadata = clean_metadata(metadata)  # Ensure metadata is JSON serializable
-    progress_bar = st.progress(0)
-
+    
+    progress_placeholder = st.empty()  # Placeholder for the progress bar
+    progress_bar = progress_placeholder.progress(0)  # Initialize single progress bar
+    
+    total_chunks = len(text_chunks)
+    
     for i, chunk in enumerate(text_chunks):
         if not chunk.strip():  # Skip empty chunks
             continue
@@ -144,7 +156,12 @@ def upload_to_supabase(supabase, table_name, content, metadata, expected_dim, mo
         except ValueError as e:
             st.error(f"⚠️ Skipping invalid text chunk: {e}")
             continue
+        
+        progress_bar.progress((i + 1) / total_chunks)  # Update single progress bar
 
-        progress_bar.progress((i + 1) / len(text_chunks))
-
-    st.success(f"✅ Uploaded {len(text_chunks)} chunks successfully!")
+    # ✅ Display fading success message
+    success_message = st.empty()
+    success_message.success(f"✅ Uploaded {total_chunks} chunks successfully!")
+    time.sleep(3)  # Wait 3 seconds
+    success_message.empty()  # Clear success message
+    progress_placeholder.empty()  # Remove progress bar after upload
