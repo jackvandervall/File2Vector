@@ -1,6 +1,11 @@
 # 🚀 File2Vector  
 
-**File2Vector** is a tool that enables users to upload and store various file types in their own **Supabase vector database**. It extracts text from **DOCX, PDFs**, and structured data from **spreadsheets**, generating **embeddings** while storing them efficiently for further use.  
+# 🥳 File2Vector - **NEW RELEASE**  
+
+A tool that allows users to upload and store various file types in their own **Supabase vector database**.  
+
+It extracts text from **DOCX, PDFs, and spreadsheets**, generating **embeddings** while storing them efficiently.
+
 
 ## ✨ Features  
 ✔️ **Supports multiple file types**: DOCX, PDFs, CSVs, and more  
@@ -8,6 +13,34 @@
 ✔️ **Embeddings generation** for vector storage  
 ✔️ **Seamless integration** with Supabase  
 ✔️ **User-friendly interface** for easy file uploads  
+
+## 📌 How to Install
+Follow these steps to install and run **File2Vector** on your local machine.
+
+## **🔹 Step 1: Install Dependencies**
+Before running the app, install the required Python packages.
+```sh
+pip install -r requirements.txt
+```
+
+If there is no `requirements.txt`, you can install the dependencies manually:
+```sh
+pip install streamlit
+```
+(Add any additional dependencies if necessary.)
+
+## **🔹 Step 2: Navigate to the App Directory**
+Move into the `app/` directory:
+```sh
+cd app
+```
+
+## **🔹 Step 3: Run the Streamlit App**
+Start the application by running:
+```sh
+streamlit run main.py
+```
+This will launch the **File2Vector** web app in your default browser.
 
 ## 📌 How to Use  
 
@@ -23,9 +56,6 @@
 
 3. **Provide Feedback**  
    - Use the **contact page** to share your experience or report issues  
-
-## 🖼️ Preview  
-![File2Vector Preview - Upload PDF](https://github.com/user-attachments/assets/1edfcc7d-116c-41b7-b2c9-70633ff7aace)  
 
 ## 🔗 Connect with Me  
 📧 **Email:** [jackvdv3@gmail.com](mailto:jackvdv3@gmail.com)  

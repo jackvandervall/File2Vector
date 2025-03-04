@@ -1,8 +1,0 @@
-{
-    "SUPABASE_URL": "https://your-supabase-url.supabase.co",
-    "SUPABASE_KEY": "your-service-role-key",
-    "COHERE_API_KEY": "your-cohere-api-key",
-    "OPENAI_API_KEY": "your-openai-api-key",
-    "TABLE_NAME": "your_vector_table",
-    "EXPECTED_DIM": 1024
-}
