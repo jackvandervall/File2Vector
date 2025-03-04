@@ -13,7 +13,7 @@ rain(
 
 
 def show():
-    # Title & Subtitle
+    # Introduction
     st.title("🥳 File2Vector - :violet[NEW RELEASE]")
     st.write(
         "A tool that allows users to upload and store various file types in their own **:green[Supabase] vector database**."
@@ -21,15 +21,21 @@ def show():
     st.write(
         "It extracts text from **:violet[DOCX], :violet[PDFs], and :violet[spreadsheets]**, generating **:violet[embeddings]** while storing them efficiently."
     )
-    # Features
+    
+    st.write("")
+
+    # Display Image Using Streamlit
+    st.image("img/vector_space.webp", use_container_width=True)
+
+    # Features section below the image
     st.markdown("### 🎆 Features")
     st.markdown(
         """
     - ✅ **Supports multiple file types**: DOCX, PDFs, CSVs, and more  
     - ✅ **Automatic text extraction** from documents  
     - ✅ **Embeddings generation** for vector storage  
-    - ✅ **Seamless integration** with Supabase  
-    - ✅ **User-friendly interface** for easy file uploads  
+    - ✅ **Seamless integration with Supabase**  
+    - ✅ **User-friendly interface for easy file uploads**  
     """
     )
 
@@ -53,10 +59,5 @@ def show():
     """
     )
 
-    # Display Image
-    st.image(
-        "img/vector_space.webp",
-        use_container_width=True
-    )
     st.write("***")
     st.write("*[:violet[04/03/2025 release]](https://github.com/jackvandervall/File2Vector)*")

@@ -112,8 +112,8 @@ def clean_metadata(metadata):
 
 
 # ✅ Function to upload extracted text to Supabase
-def upload_to_supabase(supabase, table_name, content, metadata, expected_dim, model, cohere_key, openai_key):
-    text_chunks = split_text(content, chunk_size=300)
+def upload_to_supabase(supabase, table_name, content, metadata, expected_dim, model, cohere_key, openai_key, chunk_size):
+    text_chunks = split_text(content, chunk_size=chunk_size)
 
     if not text_chunks:
         st.error("⚠️ No valid text extracted for embedding. Skipping upload.")
