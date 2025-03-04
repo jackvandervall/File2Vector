@@ -1,5 +1,3 @@
-# 🚀 File2Vector  
-
 # 🥳 File2Vector - **NEW RELEASE**  
 
 A tool that allows users to upload and store various file types in their own **Supabase vector database**.  
