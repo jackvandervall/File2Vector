@@ -55,6 +55,12 @@ This will launch the **File2Vector** web app in your default browser.
 3. **Provide Feedback**  
    - Use the **contact page** to share your experience or report issues  
 
+## 🚀 Roadmap 2025
+✔️ **API support** for any Embedding provider
+✔️ Upload to any **Vector Database**
+✔️ **Instant RAG** functionality using your own LLM API
+✔️ **More to be announced**
+
 ## 🔗 Connect with Me  
 📧 **Email:** [jackvdv3@gmail.com](mailto:jackvdv3@gmail.com)  
 💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/yourjackvandervall)  
