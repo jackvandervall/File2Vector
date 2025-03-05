@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Replace with your actual webhook URL from n8n
-N8N_WEBHOOK_URL = "https://n8n.ecda.ai/webhook/dashboard"
+N8N_WEBHOOK_URL = "https://app.n8n.cloud/webhook/dashboard"
 
 def trigger_n8n_workflow(payload):
     """Send data to n8n workflow"""
