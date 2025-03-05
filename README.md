@@ -1,8 +1,7 @@
 # 🥳 File2Vector - **NEW RELEASE**  
 
 A tool that allows users to upload and store various file types in their own **Supabase vector database**.  
-
-It extracts text from **DOCX, PDFs, and spreadsheets**, generating **embeddings** while storing them efficiently.
+Extract text from **DOCX, PDFs, and spreadsheets**, generating **embeddings** while storing them efficiently.
 
 
 ## ✨ Features  
@@ -11,6 +10,7 @@ It extracts text from **DOCX, PDFs, and spreadsheets**, generating **embeddings*
 ✔️ **Embeddings generation** for vector storage  
 ✔️ **Seamless integration** with Supabase  
 ✔️ **User-friendly interface** for easy file uploads  
+
 
 ## 📌 How to Install
 Follow these steps to install and run **File2Vector** on your local machine.
@@ -40,6 +40,7 @@ streamlit run main.py
 ```
 This will launch the **File2Vector** web app in your default browser.
 
+
 ## 📌 How to Use  
 
 1. **Set up Supabase**  
@@ -55,11 +56,13 @@ This will launch the **File2Vector** web app in your default browser.
 3. **Provide Feedback**  
    - Use the **contact page** to share your experience or report issues  
 
+
 ## 🚀 Roadmap 2025
 - [ ] API support for any Embedding provider
 - [ ] Upload to any Vector Database
 - [ ] Instant RAG functionality using your own LLM API
 - [ ] More to be announced...
+
 
 ## 🔗 Connect with Me  
 💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/yourjackvandervall)  
