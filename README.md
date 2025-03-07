@@ -65,5 +65,5 @@ This will launch the **File2Vector** web app in your default browser.
 
 
 ## 🔗 Connect with Me  
-💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/yourjackvandervall)  
+💼 **LinkedIn:** [Jack van der Vall](https://www.linkedin.com/in/jackvandervall)  
 📂 **GitHub:** [jackvandervall](https://github.com/jackvandervall)  
